@@ -1,23 +1,25 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { fetchCases } from '../actions/caseActions';
 
-function CaseList() {
-    const [cases, setCases] = useState([])
+function CaseList(props) {
+    // const [cases, setCases] = useState([])
 
     useEffect(() => {
-
-        fetch('https://jsonplaceholder.typicode.com/posts')
-            .then(response => response.json())
-            .then(json => setCases(json))
+        props.fetchCases();
     }, [])
 
-    const caseItems = cases.map((post, key) => (
-        <div key={key}>
-            <h3>{post.title}</h3>
-            <p>{post.body}</p>
-        </div>
-    ))
+    let caseItems
+    if (props.cases) {
+        caseItems = props.cases.map((post, key) => (
+            <div key={key}>
+                <h3>{post.title}</h3>
+                <p>{post.body}</p>
+            </div>
+        ))
+    }
     return (
         <div>
             <h1>Cases List</h1>
@@ -26,4 +28,8 @@ function CaseList() {
     )
 }
 
-export default CaseList;
+const mapStateToProps = state => ({
+    cases: state.cases.items
+})
+
+export default connect(mapStateToProps, { fetchCases })(CaseList);
