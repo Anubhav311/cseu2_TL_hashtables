@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 
 import './App.css';
 import CaseList from './components/caseList';
+import CaseForm from './components/caseForm';
 
 
 // const firebase = require("firebase");
@@ -59,6 +60,7 @@ function App() {
 
   return (
     <div className="App">
+      <CaseForm/>
       <CaseList/>
     </div>
   );
