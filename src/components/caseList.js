@@ -11,7 +11,6 @@ function CaseList() {
             .then(response => response.json())
             .then(json => setPosts(json))
     }, [])
-    console.log(posts)
 
     const caseItems = posts.map((post, key) => (
         <div key={key}>
