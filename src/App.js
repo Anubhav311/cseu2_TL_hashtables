@@ -1,10 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import axios from 'axios';
-import { useState, useEffect } from 'react';
 
 import './App.css';
-import Case from './components/case';
+import CaseList from './components/caseList';
 
 
 // const firebase = require("firebase");
@@ -58,28 +56,10 @@ import Case from './components/case';
 
 function App() {
 
-  const [posts, setPosts] = useState([])
-
-  useEffect(() => {
-    // let result
-    // async function netCall() {
-    //   result = await axios.get('https://jsonplaceholder.typicode.com/posts');
-    //   console.log(result)
-    // }
-    fetch('https://jsonplaceholder.typicode.com/posts')
-      .then(response => response.json())
-      .then(json => setPosts(json))
-
-    // setPosts(result)
-  }, [])
-  console.log(posts)
-  // const postItems = posts.map(post => {
-  //   console.log(post)
-  // })
 
   return (
     <div className="App">
-      <Case/>
+      <CaseList/>
     </div>
   );
 }
