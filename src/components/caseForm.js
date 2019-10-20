@@ -14,10 +14,28 @@ function CaseForm() {
         }
     }
 
+    const handleSubmit = e => {
+        e.preventDefault();
+        const submittedCase = {
+            title: title,
+            body: body
+        }
+
+        fetch('https://jsonplaceholder.typicode.com/posts', {
+            method: 'POST',
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(submittedCase)
+        })
+        .then(res => res.json())
+        .then(data => console.log(data))
+    }
+
     return (
         <div>
             <h1>Add Case</h1>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <div>
                     <label>Title: </label><br/>
                     <input type='text' name='title' value={title} onChange={handleChange}/>
