@@ -3,16 +3,16 @@ import axios from 'axios';
 import { useState, useEffect } from 'react';
 
 function CaseList() {
-    const [posts, setPosts] = useState([])
+    const [cases, setCases] = useState([])
 
     useEffect(() => {
 
         fetch('https://jsonplaceholder.typicode.com/posts')
             .then(response => response.json())
-            .then(json => setPosts(json))
+            .then(json => setCases(json))
     }, [])
 
-    const caseItems = posts.map((post, key) => (
+    const caseItems = cases.map((post, key) => (
         <div key={key}>
             <h3>{post.title}</h3>
             <p>{post.body}</p>
@@ -20,7 +20,7 @@ function CaseList() {
     ))
     return (
         <div>
-            <h1>Posts List</h1>
+            <h1>Cases List</h1>
             {caseItems}
         </div>
     )

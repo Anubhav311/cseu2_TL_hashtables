@@ -1,16 +1,13 @@
-// import {FETCH_CASES} from '../actions/types'
+import {FETCH_CASES, NEW_CASE} from '../actions/types'
 
 const initState = {
-    id: 1, case: 'abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd', user: 'Anubhav',
-    id: 1, case: 'abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd', user: 'Gaurav',
-    id: 1, case: 'abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd abcd', user: 'Harsh'
+    cases: [],
+    case: {}
 }
 
-export default (state = {}, action) => {
-    // switch(action.type) {
-    //     case FETCH_CASES:
-    //         return action.payload;
-    //     default:
+export default function(state = initState, action) {
+    switch(action.type) {
+        default:
             return state;
-    // }
+    }
 }
