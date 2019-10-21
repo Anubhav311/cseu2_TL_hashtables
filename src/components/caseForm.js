@@ -1,8 +1,10 @@
 import React from 'react';
 import axios from 'axios';
 import { useState, useEffect } from 'react';
+import { connect } from 'react-redux';
+import { createCase } from '../actions/caseActions';
 
-function CaseForm() {
+function CaseForm(props) {
     const [title, setTitle] = useState('')
     const [body, setBody] = useState('')
 
@@ -16,20 +18,9 @@ function CaseForm() {
 
     const handleSubmit = e => {
         e.preventDefault();
-        const submittedCase = {
-            title: title,
-            body: body
-        }
 
-        fetch('https://jsonplaceholder.typicode.com/posts', {
-            method: 'POST',
-            headers: {
-                'content-type': 'application/json'
-            },
-            body: JSON.stringify(submittedCase)
-        })
-        .then(res => res.json())
-        .then(data => console.log(data))
+        // call action
+        props.createCase({title: title, body: body});
     }
 
     return (
@@ -52,4 +43,10 @@ function CaseForm() {
     )
 }
 
-export default CaseForm;
+const mapStateToProps = state => {
+    return {
+        newCase: state.cases.newCase.item
+    }
+}
+
+export default connect(mapStateToProps, { createCase })(CaseForm);

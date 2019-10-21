@@ -29,7 +29,8 @@ function CaseList(props) {
 }
 
 const mapStateToProps = state => ({
-    cases: state.cases.items
+    // ...state,
+    cases: state.cases.items,
 })
 
 export default connect(mapStateToProps, { fetchCases })(CaseList);

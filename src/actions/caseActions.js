@@ -8,3 +8,18 @@ export const fetchCases = () => dispatch => {
             payload: cases
         }))
 }
+
+export const createCase = (caseData) => dispatch => {
+    fetch('https://jsonplaceholder.typicode.com/posts', {
+        method: 'POST',
+        headers: {
+            'content-type': 'application/json'
+        },
+        body: JSON.stringify(caseData)
+    })
+    .then(res => res.json())
+    .then(newCase => dispatch({
+        type: NEW_CASE,
+        payload: newCase
+    }))
+}
