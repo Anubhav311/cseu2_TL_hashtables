@@ -1,7 +1,11 @@
 import React from 'react';
+import { Route, Switch } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import './App.css';
+import ProtectedRoute from './components/ProtectedRoute';
+import Home from './components/Home';
+import Login from './components/Login';
 import CaseList from './components/caseList';
 import CaseForm from './components/caseForm';
 
@@ -55,21 +59,33 @@ import CaseForm from './components/caseForm';
 // });
 
 
-function App() {
+function App(props) {
 
+  const { isAuthenticated, isVerifying } = props;
 
   return (
-    <div className="App">
-      <CaseForm/>
-      <CaseList/>
-    </div>
+    <Switch>
+      <div className="App">
+        <ProtectedRoute 
+          exact
+          path='/'
+          component={Home}
+          isAuthenticated={isAuthenticated}
+          isVerifying={isVerifying}
+        />
+        <Route path='/login' component={Login} />
+        <CaseForm/>
+        <CaseList/>
+      </div>
+    </Switch>
   );
 }
 
-// const mapStateToProps = (state) => {
-//   return {
-//     cases: state.cases
-//   }
-// }
+function mapStateToProps(state) {
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    isVerifying: state.auth.isVerifying
+  }
+}
 
-export default App;
+export default connect(mapStateToProps)(App);
