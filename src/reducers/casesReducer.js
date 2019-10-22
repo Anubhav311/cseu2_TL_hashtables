@@ -1,4 +1,4 @@
-import {FETCH_CASES, NEW_CASE} from '../actions/types'
+import {FETCH_CASES, NEW_CASE, NEW_CASE_ERROR} from '../actions/types'
 
 const initState = {
     cases: [],
@@ -11,18 +11,18 @@ const initState = {
 export default function(state = initState, action) {
     switch(action.type) {
         case FETCH_CASES:
-            console.log(state)
             return {
                 ...state,
                 items: action.payload,
             }
-            case NEW_CASE:
-            // console.log(action)
+        case NEW_CASE:
             return {
                 ...state,
                 item: action.payload
             }
-            default:
+        case NEW_CASE_ERROR:
+            return state
+        default:
             return state;
     }
 }

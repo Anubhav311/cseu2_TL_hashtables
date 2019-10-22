@@ -20,7 +20,7 @@ function CaseForm(props) {
         e.preventDefault();
 
         // call action
-        props.createCase({title: title, body: body});
+        props.createCase({id: 1, title: title, body: body});
     }
 
     return (
