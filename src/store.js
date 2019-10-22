@@ -8,15 +8,25 @@ import { myFirebase } from './firebase/firebaseConfig';
 
 const initState = {}
 
-const store = createStore(
-    rootReducer,
-    initState, 
-    compose(
-        applyMiddleware(reduxThunk.withExtraArgument({ getFirebase, getFirestore })),
-        reduxFirestore(myFirebase),
-        // reactReduxFirebase(myFirebase),
-        window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-    )
-);
+// const store = createStore(
+//     rootReducer,
+//     initState, 
+//     compose(
+//         applyMiddleware(reduxThunk.withExtraArgument({ getFirebase, getFirestore })),
+//         reduxFirestore(myFirebase),
+//         // reactReduxFirebase(myFirebase),
+//         window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+//     )
+// );
 
-export default store;
+export default function configureStore(persistedState) {
+    const store = createStore(
+        rootReducer,
+        persistedState,
+        applyMiddleware(reduxThunk)
+    );
+    store.dispatch(verifyAuth());
+    return store;
+}
+
+// export default store;

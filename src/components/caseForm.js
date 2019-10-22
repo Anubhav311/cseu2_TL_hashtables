@@ -20,7 +20,7 @@ function CaseForm(props) {
         e.preventDefault();
 
         // call action
-        props.createCase({id: 1, title: title, body: body});
+        // props.createCase({id: 1, title: title, body: body});
     }
 
     return (
@@ -43,10 +43,11 @@ function CaseForm(props) {
     )
 }
 
-const mapStateToProps = state => {
-    return {
-        newCase: state.cases.newCase.item
-    }
-}
+// const mapStateToProps = state => {
+//     return {
+//         newCase: state.cases.newCase.item
+//     }
+// }
 
-export default connect(mapStateToProps, { createCase })(CaseForm);
+// export default connect(mapStateToProps, { createCase })(CaseForm);
+export default CaseForm;
