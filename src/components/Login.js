@@ -30,12 +30,7 @@ class Login extends Component {
         return (
           <div>
             <div>
-              {/* <Avatar className={classes.avatar}>
-                <LockOutlinedIcon />
-              </Avatar> */}
-              <h3>
-                Sign in
-              </h3>
+              <h3>Sign in</h3>
               <input
                 variant="outlined"
                 margin="normal"
@@ -55,11 +50,7 @@ class Login extends Component {
                 id="password"
                 onChange={this.handlePasswordChange}
               />
-              {loginError && (
-                <p component="p" className={classes.errorText}>
-                  Incorrect email or password.
-                </p>
-              )}
+              {loginError && (<p>Incorrect email or password.</p>)}
               <button
                 type="button"
                 fullWidth
@@ -80,9 +71,10 @@ class Login extends Component {
 
 function mapStateToProps(state) {
     return {
-      isLoggingIn: state.auth.isLoggingIn,
-      loginError: state.auth.loginError,
-      isAuthenticated: state.auth.isAuthenticated
+        isLoggingIn: state.auth.isLoggingIn,
+        loginError: state.auth.loginError,
+        isAuthenticated: state.auth.isAuthenticated
     };
-  }
-  export default connect(mapStateToProps)(Login);
+}
+
+export default connect(mapStateToProps)(Login);

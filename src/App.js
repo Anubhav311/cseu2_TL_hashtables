@@ -74,8 +74,8 @@ function App(props) {
           isVerifying={isVerifying}
         />
         <Route path='/login' component={Login} />
-        <CaseForm/>
-        <CaseList/>
+        {/* <CaseForm/>
+        <CaseList/> */}
       </div>
     </Switch>
   );
