@@ -13,7 +13,9 @@ class DynamicArray:
         self.storage = [None] * capacity
 
     def append(self, value):
-        pass
+        # add something to the end
+        if self.count >= self.capacity:
+            self.resize_array()
 
     def insert(self, value, index):
         pass
