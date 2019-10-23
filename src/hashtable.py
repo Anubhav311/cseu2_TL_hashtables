@@ -57,7 +57,7 @@ class HashTable:
             print("Warning: index collision")
             return
 
-        self.storage[index] = value
+        self.storage[index] = LinkedPair(key, value)
 
 
 
@@ -88,8 +88,12 @@ class HashTable:
         '''
         index = self._hash_mod(key)
 
-        return self.storage[index]
+        pair = self.storage[index]
 
+        if pair is None:
+            return 
+
+        return self.storage[index].value
 
 
     def resize(self):
@@ -99,7 +103,18 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        self.capacity *= 2 # doubling the capacity will make it a O(log n) operation
+
+        new_storage = [None] * self.capacity
+
+        for pair in self.storage:
+            if pair is not None:
+                new_index = self._hash_mod(pair.key)
+                new_storage[new_index] = pair
+
+            self.storage = new_storage
+
+
 
 
 if __name__ == "__main__":
@@ -116,8 +131,8 @@ if __name__ == "__main__":
     print(ht.retrieve("line_2"))
     print(ht.retrieve("line_3"))
 
-    ht.remove("line_3")
-    ht.remove("line_3")
+    # ht.remove("line_3")
+    # ht.remove("line_3")
 
     # Test resizing
     old_capacity = len(ht.storage)
