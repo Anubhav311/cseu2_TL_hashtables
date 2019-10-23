@@ -56,4 +56,4 @@ class DynamicArray:
         self.storage = new_storage
 
     def add_to_front(self, value):
-        pass
+        self.insert(value, 0)
