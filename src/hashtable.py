@@ -51,7 +51,13 @@ class HashTable:
 
         Fill this in.
         '''
-        pass
+        index = self._hash_mod(key)
+
+        if self.storage[index] is not None:
+            print("Warning: index collision")
+            return
+
+        self.storage[index] = value
 
 
 
