@@ -8,7 +8,9 @@
 
 class DynamicArray:
     def __init__(self, capacity=8):
-        pass
+        self.count = 0
+        self.capacity = capacity
+        self.storage = [None] * capacity
 
     def append(self, value):
         pass
