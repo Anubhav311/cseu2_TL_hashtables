@@ -17,8 +17,19 @@ class DynamicArray:
         if self.count >= self.capacity:
             self.resize_array()
 
+        self.storage[self.count] = value
+        self.count += 1
+
     def insert(self, value, index):
-        pass
+        # add to somewhere
+        if self.count >= self.capacity:
+            self.resize_array()
+
+        for i in range(self.count, index, -1):
+            self.storage[i] = self.storage[i-1]
+
+        self.storage[index] = value
+        self.count += 1
 
     def remove(self, index):
         pass
