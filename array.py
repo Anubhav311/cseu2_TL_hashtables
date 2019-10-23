@@ -48,7 +48,12 @@ class DynamicArray:
             print(value)
 
     def resize_array(self):
-        pass
+        self.capacity *= 2
+        new_storage = [None] * self.capacity
+        for i in range(self.count):
+            new_storage[i] = self.storage[i]
+
+        self.storage = new_storage
 
     def add_to_front(self, value):
         pass
