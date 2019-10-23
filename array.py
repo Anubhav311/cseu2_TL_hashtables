@@ -44,7 +44,8 @@ class DynamicArray:
         return value
 
     def print(self):
-        pass
+        for value in self.storage:
+            print(value)
 
     def resize_array(self):
         pass
